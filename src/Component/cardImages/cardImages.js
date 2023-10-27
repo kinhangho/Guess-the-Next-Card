@@ -53,6 +53,10 @@ const cardImages = {
     'AD': 'https://deckofcardsapi.com/static/img/AD.png',
     'AH': 'https://deckofcardsapi.com/static/img/AH.png',
     'AS': 'https://deckofcardsapi.com/static/img/AS.png',
+    'back': 'https://www.deckofcardsapi.com/static/img/back.png', 
+    'Joker-Red': '../img/Joker.png',
+  'Joker-Black': '../img/blackJoker.png',
+
   };
   
   export default cardImages;

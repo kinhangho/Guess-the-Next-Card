@@ -6,6 +6,7 @@ import './Game.css';
 import cardImages from '../cardImages/cardImages.js';
 import { fetchCardFromAPI } from '../api/api.js';  
 
+
  
 
 function Game() {
@@ -31,6 +32,9 @@ function Game() {
     const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
     const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
     const cards = [];
+
+    cards.push({ suit: 'Back', rank: 'Card', isBack: true });
+
     for (const suit of suits) {
       for (const rank of ranks) {
         cards.push({ suit, rank });
@@ -269,17 +273,45 @@ function Game() {
           <p>Current Player: {players[currentPlayerIndex].name}</p>
    
           <div>
-            <div
-              className={`card ${
-                currentCard.suit === 'Hearts' || currentCard.suit === 'Diamonds'
-                  ? 'red'
-                  : 'black'
-              }`}
-            >
+  <div
+    className={`card ${
+      currentCard.suit === 'Hearts' || currentCard.suit === 'Diamonds'
+        ? 'red'
+        : 'black'
+    }`}
+  >
+    {currentCard.isBack ? (
+      <img
+        src="https://www.deckofcardsapi.com/static/img/back.png"
+        alt="Back of Card"
+      />
+    ) : currentCard.suit === 'Health' && currentCard.rank === 'Card' ? (
+      <img
+        src="https://www.deckofcardsapi.com/static/img/health.png"
+        alt="Health Card"
+      />
+      ) : currentCard.rank === 'Joker' && currentCard.suit === 'Black' ? (
+        <img
+        src={require('../img/blackJoker.png')}
+        alt="Black Joker Card"
+        />
+      ) : currentCard.rank === 'Joker' && currentCard.suit === 'Red' ? (
+        <img
+        src={require('../img/Joker.png')} 
+        alt="Red Joker Card"
+        />
+      ) : currentCard.image ? (
+      <img
+        src={currentCard.image}
+        alt={`${currentCard.rank} of ${currentCard.suit}`}
+      />
+    ) : (
+      <Card currentCard={currentCard} />
+      )}
+      </div>
+    </div>
 
-          <Card currentCard={currentCard} />
-            </div>
-          </div>
+
   
           {currentCard.rank === 'J' || currentCard.rank === 'Q' || currentCard.rank === 'K' ? (
             <>
